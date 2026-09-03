@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Pesanan</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Riwayat Pesanan</h1>
+            <p>Daftar pesanan Anda saat ini</p>
+        </header>
+
+        <div class="history-list">
+            {{ range .orders}}
+            <div class="history-item">
+                <div class="history-details">
+                    <p class="item-name">{{ .ItemName }}</p>
+                    <p class="text-secondary">Jumlah: {{ .Quantity }} x</p>
+                    <p class="text-secondary">Status: {{ .Status }}</p>
+                </div>
+                <div class="history-total">
+                    Rp {{ .Total }}
+                </div>
+            </div>
+            {{ end }}
+        </div>
+
+        <a href="/" class="back-link">← Kembali ke Menu</a>
+    </div>
+</body>
+</html>

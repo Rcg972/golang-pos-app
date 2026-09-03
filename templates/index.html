@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .title }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Nusantara Coffee</h1>
+            <p>{{ .subtitle }}</p>
+        </header>
+        
+        <div class="menu-grid">
+            {{ range .menu}}
+            <div class="menu-item">
+                <span class="menu-name">{{ .Name }}</span>
+                <span class="menu-price">Rp {{ .Price }}</span>
+            </div>
+            {{ end }}
+        </div>
+
+        <div class="order-section">
+            <h2>Pesan Kopi</h2>
+            <form action="/order" method="post">
+                <div class="form-group">
+                    <label>Pilih Menu</label>
+                    <select name="item_name">
+                        {{ range .menu}}
+                        <option value="{{ .Name}}">{{ .Name }} (Rp {{ .Price}})</option>
+                        {{ end }}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Jumlah</label>
+                    <input type="number" name="quantity" min="1" value="1">
+                </div>
+                <button type="submit">Pesan Sekarang</button>
+            </form>
+
+            {{ if .error }}
+            <div class="error-message">{{ .error }}</div>
+            {{ end }}
+        </div>
+    </div>
+</body>
+</html>

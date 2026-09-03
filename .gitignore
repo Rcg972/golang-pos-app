@@ -1,0 +1,9 @@
+# Compiled Go binaries
+project-go
+
+# Database / Storage files
+orders.json
+
+# IDE configurations
+.vscode/
+.idea/
